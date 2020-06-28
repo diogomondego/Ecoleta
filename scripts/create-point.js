@@ -12,7 +12,7 @@ function populateUFs () {
 populateUFs()
 
 function getCities(event) {
-    const citySelect = document.querySelector("select[name=city")
+    const citySelect = document.querySelector("select[name=city")       //ou pode ser só '...("[name=city]")'
     const stateInput = document.querySelector("input[name=state")
 
     const ufValue = event.target.value      //event traz muitas informações, uma delas é o target(onde o evento foi executado q no caso foi o select uf) e pode pegar o valor value 
@@ -21,14 +21,15 @@ function getCities(event) {
     stateInput.value = event.target.options[indexOfSelectedState].text       //dentro desses options tem q saber qual está selecionado para pegar o texto dele e mandar para o value do stateInput
 
     const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ufValue}/municipios`
+
     citySelect.innerHTML = "<option value>Selecione a Cidade</option>"      //caso for trocar de estado mostrar novamente a msg de selecionar entado senao o valor da cidade continuaria aparecendo do estado anterior escolhido
     citySelect.disabled = true
 
     fetch(url)
-    .then( (res) => { return res.json() } )     /**função anonima q retorna um valor *///transforma em json
+    .then( (res) => { return res.json() } )     /**função anonima q retorna um valor */ //transforma em json
     .then( cities => {
         
-        for ( city of cities ) {     /**"para cada estado de estados..." */
+        for ( city of cities ) {     /**"para cada cidade de cidades..." */
             citySelect.innerHTML = citySelect.innerHTML + `<option value="${city.nome}">${city.nome}</option>`      
         }
 
