@@ -1,0 +1,158 @@
+#page-create-point {
+    width: 90%;
+    max-width: 1100px;
+
+    margin: 0 auto;     /*em cima e embaixo 0 e lados seja preenchido automaticamente (alinhamento da caixa pelo lado de fora)*/
+}
+
+#page-create-point header {
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;     /*joga um cara pra um lado, coloca um espação no meio e joga outro cara pro outro lado*/
+    align-items: center;
+}
+
+#page-create-point header a {
+    color: var(--tittle-color);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+#page-create-point header a span{
+    margin-right: 16px;
+    background-image: url('../assets/arrow-left.svg');
+    display: flex;
+    width: 20px;
+    height: 23px;
+}
+
+form {
+    background-color: white;
+    margin: 80px auto;
+    padding: 64px;      /*preenchimento da parte de dentro*/
+    border-radius: 8px;
+    max-width: 730px;
+    
+}
+
+form h1 {
+    font-size: 36px;
+}
+
+form fieldset {
+    margin-top: 64px;
+    border: 0;      /*retira a borda do fieldset*/
+}
+
+form legend {
+    margin-bottom: 40px;
+}
+
+form legend h2 {
+    font-size: 24px;
+}
+
+form .field {
+    flex: 1;        /*estica automaticamente*/
+    display: flex;
+    flex-direction: column;     /*colocar os elementos em coluna (ex.: label em cima com seu respectivo input embaixo)*/
+    margin-bottom: 24px;
+    
+}
+
+form .field-group {
+    display: flex;
+}
+
+form input,
+form select {
+    background-color: #f0f0f5;
+
+    border: 0;
+    padding: 16px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+
+    /*outline: none;      outline é a linha(borda) em volta do input*/
+}
+
+form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+form label {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+form .field-group .field + .field {     /*pega(referencia) um field que vem em seguida de outro field*/
+    margin-left: 24px;
+}
+
+form button {
+    width: 260px;
+    height: 56px;
+
+    background-color: var(--primary-color);
+    border-radius: 8px;
+
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+
+    border: 0;
+    margin-top: 40px;
+
+    transition: background-color 400ms;     /*se nao tivesse o b.c. quando carregasse a página o botão levaria os 400ms para aplicar seu estilo definido*/
+}
+
+form button:hover {
+    background-color: #2fb86e;
+}
+
+.items-grid {
+    display: grid;      /*nao altera nada pois tem q utilizar o template pra saber como vai querer que fique disposta a grade*/
+    grid-template-columns: 1fr 1fr 1fr;       /*com o columns e os valores significa que vou querer que a coluna do grid tenha 3 elementos dispostos (lado a lado) e o 1fr é um jeito flexível para calcular automaticamente o tamanho que vai ficar dentro do grid*/
+    gap: 16px;      /*gap faz a separação da margem de dentro do grid (mesma coisa que o margin so que esse seria mais dificil)*/
+}
+
+.items-grid li {
+    background-color: #f5f5f5;
+    list-style: none;       /*retira a bolinha do li)*/
+
+    border: 2px solid #f5f5f5;
+    border-radius: 8px;
+
+    height: 180px;
+
+    padding: 32px 24px 16px;        /*topo, laterais, baixo*/
+
+    display: flex;      /*fluxo do conteúdo da esquerda para direita("inline")*/
+    flex-direction: column;     /*muda a ordem (direção) do flex para de cima para baixo)*/
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.items-grid li span {
+    margin-top: 12px;
+    flex: 1;        /*para ter um tamanho que preenche sozinho (imagem veio, ocupou um tamanho img, e o tamanho do span ocupou o restante)*/
+    display: flex;
+    align-items: center;        /*para deixar o texto bem no meio precisa do display flex e entao alinhar os items(texto)*/
+    color: var(--tittle-color)
+}
+
+.items-grid li.selected {     /*procurar dentro do items-grid o li que tenha a classe selected*/
+    background: #e1faec;
+    border: 2px solid #34cb79;
+}
+
+.items-grid li img,
+.items-grid li span {
+    pointer-events: none;       /*eventos de clique neles (img e span) não existem(para o evento de clique no js pegar só o li)*/
+}

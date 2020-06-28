@@ -47,6 +47,8 @@ for (const item of itemsToCollect) {
     item.addEventListener("click", handleSelectedItem)
 }
 
+const collectedItems = document.querySelector("input[name=items")
+
 //let é uma variável, pode mudar de valor depois, const nao pode
 let selectedItems = []      //salvar os itens(valores) selecionados
 
@@ -81,9 +83,7 @@ function handleSelectedItem(event) {
     }
     console.log(selectedItems)    
 
-    //atualizar o campo escondido com os itens selecionados
-    
-    const liInput = document.querySelector("input[name=items").value = selectedItems
-    console.log(liInput)
+    //atualizar o campo escondido com os itens selecionados    
+    collectedItems.value = selectedItems//.join(' ')
     
 }

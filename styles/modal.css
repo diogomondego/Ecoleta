@@ -1,0 +1,81 @@
+#modal {
+    background-color: #0E0A14EF;        /*#0E0A14EF cor alfa, as duas ultimas letras indicam que é alfa(pode escurecer mais ainda ou deixar nem cor nenhuma, no exemplo é um meio termo para ficar com transparência)*/
+    height: 100vh;
+    width: 100vw;
+    position: fixed;    /*vai ficar fixo onde mandar ficar*/
+    top: 0;     /*manda ele lá pra cima, na "margem 0"(ele estava no final da página, onde com a posição fixa nao dava pra ver)*/
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: 400ms;
+}
+
+#modal.hide {
+    display: none;
+}
+
+#modal .content {
+    color: white;
+
+    width: 420px;
+}
+
+#modal .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 48px;
+}
+
+#modal .header a {
+    background-image: url("../assets/x.svg");
+    width: 20px;
+    height: 20px;
+    display: flex;
+
+    font-size: 0.01px;      /*tamanho da fonte da palavra "fechar", é bom deixar o texto para leitores de conteúdo*/
+}
+
+#modal .header h1 {
+    color: white;
+    font-size: 36px;
+    line-height: 42px;
+}
+
+#modal form label {
+    font-size: 14px;
+    line-height: 16px;
+    display: block;     /*só pra forçar q ele fique em miniatura naquela posição*//*com ele o atributo fica naquele espaço de linha*/
+    margin-bottom: 8px;     /*se nao tivesse o display: block esse margin-bottom(ou top) não funcionaria(teria que colocar um margin muito maior)*/
+}
+
+#modal form .field {
+    display: flex;
+}
+
+#modal form input {
+    flex: 1;    /*pega todo o espaço que sobra pra ele(o conteúdo tem 420px de largura)*/
+
+    background-color: #f0f0f5;
+    border-radius: 8px 0 0 8px;
+    border: 0;
+
+    padding: 16px 24px;
+    font-size: 16px;
+    color: #6c6c80;
+}
+
+#modal form button {
+    width: 72px;
+    height: 72px;
+    background-color: var(--primary-color);
+    border: 0;
+    border-radius: 0 8px 8px 0;
+}
+
+#modal form button:hover {
+    background-color: #2fb85e;
+}
