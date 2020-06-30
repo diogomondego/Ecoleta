@@ -1,0 +1,48 @@
+@media (max-width: 900px) {     /*@media é um conjunto de regras para configurar tal coisa(ex.: se a tela for de largura menor que 900px)*/
+    #page-home {
+        background-position-x: 70vw;
+    }
+
+    #page-home .content {
+        align-items: center;
+        text-align: center;
+    }
+
+    #page-home header a {
+        position: absolute;     /*cria uma "camada" e joga o conteúdo pra ela, sobrepondo a camada debaixo*/
+        bottom: 48px;       /*o bottom deve vai ser só de 48px*/
+        left: 50%;
+        transform: translateX(-50%)     /*acha o ponto médio entre o left e o translateX*/
+    }
+
+    #page-home main {
+        align-items: center;
+    }
+
+    #page-search-results .cards{
+        grid-template-columns: 1fr;
+    }
+
+    #page-search-results .cards img {
+        height: 200px;
+    }
+
+    #page-create-point .field-group{
+        flex-direction: column;
+    }
+
+    #page-create-point .field-group .field +.field {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 1700px) {
+    #page-home {
+        background-position-x: 40vw;        /*o background tem uma limitação em x*/
+    }
+}
+@media (max-height: 760px) {        /*se a tela for até o tamanho de 760px vai aplicar a(s) regra(s)*/
+    #page-home {
+        background-position-y: 125px;       /*a background vai ter uma limitação em y*/
+    }
+}
