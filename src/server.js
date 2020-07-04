@@ -4,6 +4,12 @@ const server = express()        //express() faz a variável receber uma função
 // configurar pasta publica
 server.use(express.static("public"))        //use() configuração do servidor //static() função q espera um argumento //com essa config o server.js acessa os arquivos da pasta public sem precisar excrever no endereço url o nome public/
 
+// habilitar o uso do req.body na nossa aplicação
+server.use(express.urlencoded({ extended: true }))      //urlencoded é uma função que vai habilitar a propriedade extended com true
+
+// pegar o banco de dados
+const db = require("./database/db.js")
+
 // utilizando template engine
 const nunjucks = require("nunjucks")        //pedindo uma dependência q o npm instalou(o nunjucks vindo do node_modules)
 nunjucks.configure("src/views", {
@@ -23,13 +29,81 @@ server.get("/", (req, res) => {        //(get configuração de rota) função q
 
 // está chamando rotas, não mais arquivos
 server.get("/create-point", (req, res) => {
+
+    //req.query: Query Strings da nossa url
+    //console.log(req.query)
+
     return res.render("create-point.html")
     //res.sendFile("create-point.html")
 })
 
+server.post("/save-point", (req, res) => {
+    //req.body: O corpo do nosso formulário
+    // console.log(req.body)
+
+    //inserir dados no banco de dados
+    const query = `
+        INSERT INTO places (
+            image,
+            name,
+            address,
+            address2,
+            state,
+            city,
+            items
+        ) VALUES (?,?,?,?,?,?,?)
+    `
+
+    const values = [
+        req.body.image,
+        req.body.name,
+        req.body.address,
+        req.body.address2,
+        req.body.state,
+        req.body.city,
+        req.body.items
+    ]
+
+    function afterInsertData(err) {     // depois de inserir dados
+        if(err) {
+            console.log(err)
+            return res.send("Erro no cadastro!")
+        }
+
+        console.log("Cadastrado com sucesso")
+        console.log(this)       // referenciando a resposta que o run() está trazendo
+
+        return res.render("create-point.html", { saved: true })   //retornar só depois q fizer o cadastro
+    }
+
+    db.run(query, values, afterInsertData)      //vai chamar a função afterInsertData
+
+    
+})
+
 server.get("/search", (req, res) => {
-    return res.render("search-results.html")
-    //res.sendFile("create-point.html")
+
+    const search = req.query.search
+
+    if(search == "") {
+        // pesquisa vazia
+        return res.render("search-results.html", { total: 0 })
+    }
+
+    // pegar os dados do banco de dados
+    db.all(`SELECT * FROM places WHERE city LIKE '%${search}%'`, function(err, rows) {
+        if(err) {
+            return console.log(err)
+        }
+
+        const total = rows.length       //contar o tamanho do array(quantidade de elementos)
+
+        // mostrar a página html com os dados do banco de dados
+        return res.render("search-results.html", { places: rows, total: total })    //se o nome for igual, como no exemplo 'total: total', pode ser usado só 'total'
+        //res.sendFile("create-point.html") = return res.render("search-results.html")
+    })
+
+    
 })
 
 //ligar o servidor

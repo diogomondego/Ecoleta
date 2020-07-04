@@ -1,11 +1,18 @@
+body {
+    background-color: white;
+}
+
 body::after {       /*pseudoelemento que vem depois(vai lá pra baixo do conteudo html)*/
     content: "";        /*esse é o pseudoelemento*/
-    position: fixed;        /*deixa a posição fixa para mexer depois ajustar onde ele deve ficar com top, right,...*/
-    background: white;
-    top: 250px;
+    /* position: fixed;        deixa a posição fixa para mexer depois ajustar onde ele deve ficar com top, right,... */
+    position: absolute;
+    background: #f0f0f5;
+    /* top: 250px; */
+    top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    height: 16rem;
     z-index: -1;        /*z é o campo de profundidade. Com -1 manda o atributo pra baixo(na profundidade) ou seja, pro fundo*/
 }
 
