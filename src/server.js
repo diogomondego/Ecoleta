@@ -91,7 +91,7 @@ server.get("/search", (req, res) => {
     }
 
     // pegar os dados do banco de dados
-    db.all(`SELECT * FROM places WHERE city LIKE '%${search}%'`, function(err, rows) {
+    db.all(`SELECT * FROM places`, function(err, rows) {
         if(err) {
             return console.log(err)
         }

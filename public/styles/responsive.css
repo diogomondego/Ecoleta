@@ -19,6 +19,10 @@
         align-items: center;
     }
 
+    #page-search-results main {
+        margin: 48px 0;
+    }
+
     #page-search-results .cards{
         grid-template-columns: 1fr;
     }
@@ -27,12 +31,25 @@
         height: 200px;
     }
 
+    #page-create-point legend {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #page-create-point form legend {
+        align-items: initial;
+    }
+
     #page-create-point .field-group{
         flex-direction: column;
     }
 
     #page-create-point .field-group .field +.field {
         margin-left: 0;
+    }
+
+    #page-create-point .items-grid {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
